@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MyDMZJ</string>
+    <string name="comic">漫画</string>
+    <string name="news">新闻</string>
+    <string name="novel">轻小说</string>
+    <string name="login">我的</string>
+    <string name="recommend">推荐</string>
+    <string name="update">更新</string>
+    <string name="classify">分类</string>
+    <string name="topic">专题</string>
+</resources>
