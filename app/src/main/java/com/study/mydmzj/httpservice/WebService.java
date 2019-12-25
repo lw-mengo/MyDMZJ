@@ -4,10 +4,11 @@ import com.study.mydmzj.beans.RecommendData;
 
 import java.util.List;
 
+import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface WebService {
 
     @GET(value = "recommend_new_game.json")
-    List<RecommendData> getRecommendData();
+    Call<List<RecommendData>> getRecommendData();
 }

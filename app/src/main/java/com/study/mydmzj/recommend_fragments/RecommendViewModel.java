@@ -4,30 +4,41 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.study.mydmzj.beans.RecommendData;
-import com.study.mydmzj.utils.DataManager;
+import com.study.mydmzj.httpservice.DataCallback;
+import com.study.mydmzj.repository.RecommendRepository;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class RecommendViewModel extends ViewModel {
+public class RecommendViewModel extends ViewModel implements DataCallback<List<RecommendData>> {
 
     private MutableLiveData<List<RecommendData>> liveData;
 
-    @Inject
-    DataManager dataManager;
+    
+    RecommendRepository repository;
 
+    @Inject
+    public RecommendViewModel(RecommendRepository repository) {
+        this.repository = repository;
+    }
 
     public MutableLiveData<List<RecommendData>> getLiveData() {
         if (liveData == null) {
             liveData = new MutableLiveData<>();
-            loadData();
+            repository.loadData(this);
         }
         return liveData;
     }
 
-    private void loadData() {
-        liveData.setValue(dataManager.getRecentData());
+    @Override
+    public void success(List<RecommendData> data) {
+        this.liveData.setValue(data);
+
+    }
+
+    @Override
+    public void failed(String result) {
 
     }
 }

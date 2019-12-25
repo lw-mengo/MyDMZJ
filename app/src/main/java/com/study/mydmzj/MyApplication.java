@@ -10,6 +10,7 @@ import dagger.android.support.DaggerApplication;
  */
 public class MyApplication extends DaggerApplication {
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -17,6 +18,7 @@ public class MyApplication extends DaggerApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerRepositoryComponent.builder().repository(this).build();
+        return DaggerRepositoryComponent.builder().application(this).build();
+
     }
 }

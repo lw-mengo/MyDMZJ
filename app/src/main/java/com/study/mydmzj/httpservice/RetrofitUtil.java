@@ -2,6 +2,8 @@ package com.study.mydmzj.httpservice;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -13,20 +15,24 @@ public class RetrofitUtil {
     private static final String BASE_URL = "http://v3api.dmzj.com/";
     private Retrofit retrofit;
 
-    public static RetrofitUtil getInstance() {
-        if (instance == null) {
-            synchronized (RetrofitUtil.class) {
-                if (instance == null) {
-                    instance = new RetrofitUtil();
-                }
-            }
-        }
-        return instance;
-    }
-
-    private RetrofitUtil() {
+    @Inject
+    public RetrofitUtil(){
         init();
     }
+//    public static RetrofitUtil getInstance() {
+//        if (instance == null) {
+//            synchronized (RetrofitUtil.class) {
+//                if (instance == null) {
+//                    instance = new RetrofitUtil();
+//                }
+//            }
+//        }
+//        return instance;
+//    }
+
+//    private RetrofitUtil() {
+//        init();
+//    }
 
     private void init() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();

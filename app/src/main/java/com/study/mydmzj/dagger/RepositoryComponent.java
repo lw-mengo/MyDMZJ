@@ -1,9 +1,6 @@
 package com.study.mydmzj.dagger;
 
-import android.app.Application;
-
 import com.study.mydmzj.MyApplication;
-import com.study.mydmzj.repository.RecommendRepository;
 
 import javax.inject.Singleton;
 
@@ -17,17 +14,14 @@ import dagger.android.support.AndroidSupportInjectionModule;
  */
 @Singleton
 @Component(modules = {AndroidSupportInjectionModule.class,
-        NetWorkModules.class,
-        RepositoryModules.class})
+        NetWorkModule.class,
+        RepositoryModule.class})
 public interface RepositoryComponent extends AndroidInjector<MyApplication> {
-
-    RecommendRepository recommendRepository();
-
     @Component.Builder
     interface Builder {
-        @BindsInstance
-        RepositoryComponent.Builder repository(Application application);
-
         RepositoryComponent build();
+
+        @BindsInstance
+        Builder application(MyApplication application);
     }
 }
