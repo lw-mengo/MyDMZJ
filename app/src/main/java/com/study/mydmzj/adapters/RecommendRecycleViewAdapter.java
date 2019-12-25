@@ -2,7 +2,6 @@ package com.study.mydmzj.adapters;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,7 @@ import java.util.List;
 public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
     private final int VIEW_TYPE_ONE = 1;
     private final int VIEW_TYPE_TWO = 2;
+    private final int VIEW_TYPE_THREE = 3;
     private final int VIEW_TYPE_BANNER = 0;
     private Context context;
     private List<RecommendData> recommendData = new ArrayList<>();
@@ -78,9 +78,13 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
         } else if (viewType == VIEW_TYPE_TWO) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_item_two, parent, false);
             return new GameDataViewHolder(view);
+        } else if (viewType == VIEW_TYPE_THREE) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_item_third, parent, false);
+            return new ThirdViewHolder(view);
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_banner, parent, false);
             BannerViewHolder viewHolder = new BannerViewHolder(view);
+            //banner控件放在这里，因为banner控件自身有滑动属性，因此bindview中会异常，不会轮播
             viewHolder.rv_banner.setDelayTime(3000)
                     .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
                     .setImageLoader(new ImageLoader() {
@@ -140,7 +144,34 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
             Glide.with(context).load(buildGlideUrl(recommendData.get(position).getData().get(3).getCover()))
                     .apply(getOptions())
                     .into(viewHolder.imageView_fourth);
-        } else {
+        } else if (holder instanceof ThirdViewHolder) {
+            ThirdViewHolder viewHolder = (ThirdViewHolder) holder;
+            viewHolder.textView_rv_one.setText(recommendData.get(position).getData().get(0).getTitle());
+            viewHolder.textView_rv_two.setText(recommendData.get(position).getData().get(1).getTitle());
+            viewHolder.textView_rv_three.setText(recommendData.get(position).getData().get(2).getTitle());
+            viewHolder.textView_rv_four.setText(recommendData.get(position).getData().get(3).getTitle());
+            viewHolder.textView_rv_five.setText(recommendData.get(position).getData().get(4).getTitle());
+            viewHolder.textView_rv_six.setText(recommendData.get(position).getData().get(5).getTitle());
+
+            Glide.with(context).load(buildGlideUrl(recommendData.get(position).getData().get(0).getCover()))
+                    .apply(getOptions())
+                    .into(viewHolder.imageView_rv_one);
+            Glide.with(context).load(buildGlideUrl(recommendData.get(position).getData().get(1).getCover()))
+                    .apply(getOptions())
+                    .into(viewHolder.imageView_rv_two);
+            Glide.with(context).load(buildGlideUrl(recommendData.get(position).getData().get(2).getCover()))
+                    .apply(getOptions())
+                    .into(viewHolder.imageView_rv_three);
+            Glide.with(context).load(buildGlideUrl(recommendData.get(position).getData().get(3).getCover()))
+                    .apply(getOptions())
+                    .into(viewHolder.imageView_rv_four);
+            Glide.with(context).load(buildGlideUrl(recommendData.get(position).getData().get(4).getCover()))
+                    .apply(getOptions())
+                    .into(viewHolder.imageView_rv_five);
+            Glide.with(context).load(buildGlideUrl(recommendData.get(position).getData().get(5).getCover()))
+                    .apply(getOptions())
+                    .into(viewHolder.imageView_rv_six);
+        }
 //            BannerViewHolder viewHolder = (BannerViewHolder) holder;
 //
 //            viewHolder.rv_banner.setDelayTime(3000)
@@ -161,7 +192,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
 //            viewHolder.rv_banner.setImages(strings);
 //            viewHolder.rv_banner.setBannerTitles(titles);
 //            viewHolder.rv_banner.start();
-        }
+
     }
 
     @Override
@@ -169,14 +200,22 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
         return recommendData.size();
     }
 
+    /**
+     * 用来返回recycleview的item的视图类型
+     *
+     * @param position item的下标
+     * @return 返回试图的类型值，从0开始
+     */
     @Override
     public int getItemViewType(int position) {
         if (position == 0) {
             return VIEW_TYPE_BANNER;
         } else if (recommendData.get(position).getData().size() == 3) {
             return VIEW_TYPE_ONE;
-        } else if (recommendData.get(position).getData().size() == 4 || recommendData.get(position).getData().size() == 6) {
+        } else if (recommendData.get(position).getData().size() == 4) {
             return VIEW_TYPE_TWO;
+        } else if (recommendData.get(position).getData().size() == 6) {
+            return VIEW_TYPE_THREE;
         } else {
             return super.getItemViewType(position);
         }
@@ -235,6 +274,32 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
         public BannerViewHolder(@NonNull View itemView) {
             super(itemView);
             rv_banner = itemView.findViewById(R.id.rv_banner);
+        }
+    }
+
+    /**
+     * 第三个item的view holder 显示的是3*2的列表
+     */
+    static class ThirdViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView_rv_one, imageView_rv_two, imageView_rv_three,
+                imageView_rv_four, imageView_rv_five, imageView_rv_six;
+        TextView textView_rv_one, textView_rv_two, textView_rv_three,
+                textView_rv_four, textView_rv_five, textView_rv_six;
+
+        public ThirdViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView_rv_one = itemView.findViewById(R.id.rv_third_one);
+            imageView_rv_two = itemView.findViewById(R.id.rv_third_two);
+            imageView_rv_three = itemView.findViewById(R.id.rv_third_three);
+            imageView_rv_four = itemView.findViewById(R.id.rv_third_four);
+            imageView_rv_five = itemView.findViewById(R.id.rv_third_five);
+            imageView_rv_six = itemView.findViewById(R.id.rv_third_six);
+            textView_rv_one = itemView.findViewById(R.id.rv_third_tv_one);
+            textView_rv_two = itemView.findViewById(R.id.rv_third_tv_two);
+            textView_rv_three = itemView.findViewById(R.id.rv_third_tv_three);
+            textView_rv_four = itemView.findViewById(R.id.rv_third_tv_four);
+            textView_rv_five = itemView.findViewById(R.id.rv_third_tv_five);
+            textView_rv_six = itemView.findViewById(R.id.rv_third_tv_six);
         }
     }
 }
