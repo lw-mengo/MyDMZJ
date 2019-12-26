@@ -42,7 +42,6 @@ public class RecommendFragment extends DaggerFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel.getLiveData().observe(this, recommendData -> Log.d("log", "onChanged: "));
         RecommendRecycleViewAdapter adapter = new RecommendRecycleViewAdapter(requireActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL));

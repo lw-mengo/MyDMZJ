@@ -9,4 +9,5 @@
     <string name="classify">分类</string>
     <string name="topic">专题</string>
     <string name="image_content">一张图片</string>
+    <string name="rv_comic_all">全部漫画</string>
 </resources>
