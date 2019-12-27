@@ -1,22 +1,28 @@
 package com.study.mydmzj.recommend_fragments;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.study.mydmzj.R;
+import com.study.mydmzj.adapters.TopicRecycleViewAdapter;
 
-public class TopicFragment extends Fragment {
+import javax.inject.Inject;
 
-    private TopicViewModel mViewModel;
+import dagger.android.support.DaggerFragment;
+
+public class TopicFragment extends DaggerFragment {
+    @Inject
+    TopicViewModel mViewModel;
+    private RecyclerView topic_rv;
 
     public static TopicFragment newInstance() {
         return new TopicFragment();
@@ -25,14 +31,22 @@ public class TopicFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.topic_fragment, container, false);
+        View view = inflater.inflate(R.layout.topic_fragment, container, false);
+        topic_rv = view.findViewById(R.id.topic_rv);
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
-        // TODO: Use the ViewModel
+//        mViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
+        topic_rv.setLayoutManager(new LinearLayoutManager(requireContext()));
+        topic_rv.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        TopicRecycleViewAdapter adapter = new TopicRecycleViewAdapter(requireContext());
+        mViewModel.getListMutableLiveData().observe(this, (dataList) -> {
+            adapter.setDataList(dataList);
+            topic_rv.setAdapter(adapter);
+        });
     }
 
 }

@@ -59,7 +59,6 @@ public class UpdateRecycleViewAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        Log.d("view", "onCreateViewHolder: " + rv_viewType);
         if (rv_viewType == 1) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.updata_rv_item_type_one, parent, false);
             LinearViewHolder linearViewHolder = new LinearViewHolder(view);

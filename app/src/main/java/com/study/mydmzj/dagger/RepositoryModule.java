@@ -1,8 +1,10 @@
 package com.study.mydmzj.dagger;
 
 import com.study.mydmzj.MainActivity;
+import com.study.mydmzj.recommend_fragments.ClassifyFragment;
 import com.study.mydmzj.recommend_fragments.RecommendFragment;
 import com.study.mydmzj.recommend_fragments.RecommendViewModel;
+import com.study.mydmzj.recommend_fragments.TopicFragment;
 import com.study.mydmzj.recommend_fragments.UpdateFragment;
 import com.study.mydmzj.recommend_fragments.UpdateViewModel;
 
@@ -28,5 +30,11 @@ abstract class RepositoryModule {
 
     @ContributesAndroidInjector
     abstract UpdateViewModel contributeUpdateViewModel();
+
+    @ContributesAndroidInjector
+    abstract ClassifyFragment contributeClassify();
+
+    @ContributesAndroidInjector
+    abstract TopicFragment topicFragment();
 
 }

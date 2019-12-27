@@ -1,7 +1,9 @@
 package com.study.mydmzj.repository;
 
+import com.study.mydmzj.beans.ClassifyData;
 import com.study.mydmzj.beans.LatestData;
 import com.study.mydmzj.beans.RecommendData;
+import com.study.mydmzj.beans.TopicData;
 import com.study.mydmzj.httpservice.DataCallback;
 import com.study.mydmzj.httpservice.WebService;
 
@@ -62,5 +64,40 @@ public class RecommendRepository {
             }
         });
     }
+
+    /**
+     * 获取分类页的数据
+     */
+    public void loadClassifyData(DataCallback<List<ClassifyData>> dataCallback) {
+        mwebService.getClassifyData().enqueue(new Callback<List<ClassifyData>>() {
+            @Override
+            public void onResponse(Call<List<ClassifyData>> call, Response<List<ClassifyData>> response) {
+                dataCallback.success(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<ClassifyData>> call, Throwable t) {
+                dataCallback.failed(t.toString());
+            }
+        });
+    }
+
+    /**
+     * 获取专题页的数据
+     */
+    public void loadTopicData(DataCallback<List<TopicData>> dataCallback) {
+        mwebService.getTopicData().enqueue(new Callback<List<TopicData>>() {
+            @Override
+            public void onResponse(Call<List<TopicData>> call, Response<List<TopicData>> response) {
+                dataCallback.success(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<TopicData>> call, Throwable t) {
+                dataCallback.failed(t.toString());
+            }
+        });
+    }
+
 
 }

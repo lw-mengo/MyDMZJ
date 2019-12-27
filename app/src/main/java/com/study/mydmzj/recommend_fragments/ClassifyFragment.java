@@ -1,22 +1,35 @@
 package com.study.mydmzj.recommend_fragments;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.study.mydmzj.R;
+import com.study.mydmzj.adapters.ClassifyRecyclerViewAdapter;
+import com.study.mydmzj.beans.ClassifyData;
 
-public class ClassifyFragment extends Fragment {
+import java.util.List;
 
-    private ClassifyViewModel mViewModel;
+import javax.inject.Inject;
+
+import dagger.android.support.DaggerFragment;
+
+public class ClassifyFragment extends DaggerFragment {
+
+    @Inject
+    ClassifyViewModel mViewModel;
+
+    private RecyclerView rv_classify;
 
     public static ClassifyFragment newInstance() {
         return new ClassifyFragment();
@@ -25,14 +38,23 @@ public class ClassifyFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.classify_fragment, container, false);
+        View view = inflater.inflate(R.layout.classify_fragment, container, false);
+        rv_classify = view.findViewById(R.id.classify_rv);
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ClassifyViewModel.class);
-        // TODO: Use the ViewModel
+        //mViewModel = ViewModelProviders.of(this).get(ClassifyViewModel.class);
+        rv_classify.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        ClassifyRecyclerViewAdapter adapter = new ClassifyRecyclerViewAdapter(requireContext());
+        rv_classify.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+
+        mViewModel.getListMutableLiveData().observe(this, classifyData -> {
+            adapter.setList(classifyData);
+            rv_classify.setAdapter(adapter);
+        });
     }
 
 }
