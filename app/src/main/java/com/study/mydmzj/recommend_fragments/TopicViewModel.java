@@ -5,7 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.study.mydmzj.beans.TopicData;
 import com.study.mydmzj.httpservice.DataCallback;
-import com.study.mydmzj.repository.RecommendRepository;
+import com.study.mydmzj.repository.DataRepository;
+
 import java.util.List;
 import javax.inject.Inject;
 
@@ -13,10 +14,10 @@ public class TopicViewModel extends ViewModel implements DataCallback<List<Topic
     private MutableLiveData<List<TopicData>> listMutableLiveData;
 
     @Inject
-    RecommendRepository repository;
+    DataRepository repository;
 
     @Inject
-    public TopicViewModel(RecommendRepository repository) {
+    public TopicViewModel(DataRepository repository) {
         this.repository = repository;
     }
 

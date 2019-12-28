@@ -2,6 +2,9 @@ package com.study.mydmzj.repository;
 
 import com.study.mydmzj.beans.ClassifyData;
 import com.study.mydmzj.beans.LatestData;
+import com.study.mydmzj.beans.NewsBannerData;
+import com.study.mydmzj.beans.NewsData;
+import com.study.mydmzj.beans.NovelData;
 import com.study.mydmzj.beans.RecommendData;
 import com.study.mydmzj.beans.TopicData;
 import com.study.mydmzj.httpservice.DataCallback;
@@ -18,12 +21,12 @@ import retrofit2.Response;
 /**
  * 数据仓库，为view model提供数据来源
  */
-public class RecommendRepository {
+public class DataRepository {
 
     private final WebService mwebService;
 
     @Inject
-    public RecommendRepository(WebService mwebService) {
+    public DataRepository(WebService mwebService) {
         this.mwebService = mwebService;
 
     }
@@ -94,6 +97,55 @@ public class RecommendRepository {
 
             @Override
             public void onFailure(Call<List<TopicData>> call, Throwable t) {
+                dataCallback.failed(t.toString());
+            }
+        });
+    }
+
+    /**
+     * 获取新闻页的banner与新闻列表数据
+     */
+    public void loadNewsBannerData(DataCallback<NewsBannerData> dataCallback) {
+        mwebService.getNewsBannerData().enqueue(new Callback<NewsBannerData>() {
+            @Override
+            public void onResponse(Call<NewsBannerData> call, Response<NewsBannerData> response) {
+                dataCallback.success(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<NewsBannerData> call, Throwable t) {
+                dataCallback.failed(t.toString());
+            }
+        });
+    }
+
+    public void loadNewsData(DataCallback<List<NewsData>> dataCallback) {
+        mwebService.getNewsData().enqueue(new Callback<List<NewsData>>() {
+            @Override
+            public void onResponse(Call<List<NewsData>> call, Response<List<NewsData>> response) {
+                dataCallback.success(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<NewsData>> call, Throwable t) {
+                dataCallback.failed(t.toString());
+            }
+        });
+    }
+
+    /**
+     * 小说数据加载
+     */
+
+    public void loadNovelData(DataCallback<List<NovelData>> dataCallback) {
+        mwebService.getNovelData().enqueue(new Callback<List<NovelData>>() {
+            @Override
+            public void onResponse(Call<List<NovelData>> call, Response<List<NovelData>> response) {
+                dataCallback.success(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<NovelData>> call, Throwable t) {
                 dataCallback.failed(t.toString());
             }
         });

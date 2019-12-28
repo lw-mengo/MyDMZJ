@@ -18,9 +18,9 @@ public class RefererUtil {
         }
     }
 
-    public static RequestOptions getOptions() {
+    public static RequestOptions getOptions(int width, int height) {
         RoundedCorners roundedCorners = new RoundedCorners(20);
-        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
+        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(width, height);
         return options;
     }
 }

@@ -43,7 +43,7 @@ public class ClassifyRecyclerViewAdapter extends RecyclerView.Adapter<ClassifyRe
     public void onBindViewHolder(@NonNull ClassifyViewHolder holder, int position) {
         holder.textView_title.setText(list.get(position).getTitle());
         Glide.with(context).load(RefererUtil.buildeGlideUrl(list.get(position).getCover()))
-                .apply(RefererUtil.getOptions())
+                .apply(RefererUtil.getOptions(300,300))
                 .into(holder.imageView_cover);
     }
 

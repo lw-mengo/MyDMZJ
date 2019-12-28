@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.study.mydmzj.beans.LatestData;
 import com.study.mydmzj.httpservice.DataCallback;
-import com.study.mydmzj.repository.RecommendRepository;
+import com.study.mydmzj.repository.DataRepository;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ public class UpdateViewModel extends ViewModel implements DataCallback<List<Late
     private MutableLiveData<List<LatestData>> listMutableLiveData;
 
     @Inject
-    RecommendRepository repository;
+    DataRepository repository;
 
     @Inject
-    public UpdateViewModel(RecommendRepository repository) {
+    public UpdateViewModel(DataRepository repository) {
         this.repository = repository;
     }
 

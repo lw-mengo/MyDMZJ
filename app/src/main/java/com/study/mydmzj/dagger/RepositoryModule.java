@@ -7,6 +7,7 @@ import com.study.mydmzj.recommend_fragments.RecommendViewModel;
 import com.study.mydmzj.recommend_fragments.TopicFragment;
 import com.study.mydmzj.recommend_fragments.UpdateFragment;
 import com.study.mydmzj.recommend_fragments.UpdateViewModel;
+import com.study.mydmzj.ui_fargments.NewsFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -36,5 +37,8 @@ abstract class RepositoryModule {
 
     @ContributesAndroidInjector
     abstract TopicFragment topicFragment();
+
+    @ContributesAndroidInjector
+    abstract NewsFragment contributeNewsFragment();
 
 }

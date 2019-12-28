@@ -43,7 +43,7 @@ public class TopicRecycleViewAdapter extends RecyclerView.Adapter<TopicRecycleVi
         holder.textView_topic_title.setText(dataList.get(position).getTitle());
         holder.textView_topic_time.setText(DateCovertUtil.getDate(dataList.get(position).getCreate_time()));
         Glide.with(context).load(RefererUtil.buildeGlideUrl(dataList.get(position).getSmall_cover()))
-                .apply(RefererUtil.getOptions())
+                .apply(RefererUtil.getOptions(710, 284))
                 .into(holder.imageView_topic_cover);
     }
 

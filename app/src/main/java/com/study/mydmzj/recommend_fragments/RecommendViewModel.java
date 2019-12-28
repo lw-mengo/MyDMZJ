@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.study.mydmzj.beans.RecommendData;
 import com.study.mydmzj.httpservice.DataCallback;
-import com.study.mydmzj.repository.RecommendRepository;
+import com.study.mydmzj.repository.DataRepository;
 
 import java.util.List;
 
@@ -16,10 +16,10 @@ public class RecommendViewModel extends ViewModel implements DataCallback<List<R
     private MutableLiveData<List<RecommendData>> liveData;
 
     
-    RecommendRepository repository;
+    DataRepository repository;
 
     @Inject
-    public RecommendViewModel(RecommendRepository repository) {
+    public RecommendViewModel(DataRepository repository) {
         this.repository = repository;
     }
 

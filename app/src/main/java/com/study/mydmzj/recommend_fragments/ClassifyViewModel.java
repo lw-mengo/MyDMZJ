@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.study.mydmzj.beans.ClassifyData;
 import com.study.mydmzj.httpservice.DataCallback;
-import com.study.mydmzj.repository.RecommendRepository;
+import com.study.mydmzj.repository.DataRepository;
 
 import java.util.List;
 
@@ -26,10 +26,10 @@ public class ClassifyViewModel extends ViewModel implements DataCallback<List<Cl
     }
 
     @Inject
-    RecommendRepository repository;
+    DataRepository repository;
 
     @Inject
-    public ClassifyViewModel(RecommendRepository repository) {
+    public ClassifyViewModel(DataRepository repository) {
         this.repository = repository;
     }
 

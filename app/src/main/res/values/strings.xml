@@ -10,4 +10,7 @@
     <string name="topic">专题</string>
     <string name="image_content">一张图片</string>
     <string name="rv_comic_all">全部漫画</string>
+    <string name="find_novel">找小说</string>
+    <string name="catch_novel">追小说</string>
+    <string name="ranking_list">排行榜</string>
 </resources>

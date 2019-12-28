@@ -2,7 +2,7 @@ package com.study.mydmzj.dagger;
 
 import com.study.mydmzj.httpservice.RetrofitUtil;
 import com.study.mydmzj.httpservice.WebService;
-import com.study.mydmzj.repository.RecommendRepository;
+import com.study.mydmzj.repository.DataRepository;
 
 import javax.inject.Singleton;
 
@@ -29,8 +29,8 @@ public class NetWorkModule {
 
     @Singleton
     @Provides
-    public RecommendRepository providerRepository() {
-        return new RecommendRepository(webService);
+    public DataRepository providerRepository() {
+        return new DataRepository(webService);
     }
 
 }

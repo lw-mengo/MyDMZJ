@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/topic_rv_item_cover"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:scaleType="fitXY"
         tools:srcCompat="@tools:sample/avatars" />
 
