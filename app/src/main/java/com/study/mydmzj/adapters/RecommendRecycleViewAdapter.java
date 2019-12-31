@@ -18,7 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.study.mydmzj.R;
 import com.study.mydmzj.beans.RecommendData;
-import com.youth.banner.Banner;
+import com.study.mydmzj.custom_view.MyBanner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 
@@ -74,7 +74,11 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
         View view;
         if (viewType == VIEW_TYPE_ONE) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_item_one, parent, false);
-            return new RecommendDataListViewHolder(view);
+            RecommendDataListViewHolder viewHolder = new RecommendDataListViewHolder(view);
+//            viewHolder.imageView_first.setOnClickListener(v -> {
+//                Toast.makeText(context, "the image is clicked!", Toast.LENGTH_SHORT).show();
+//            });
+            return viewHolder;
         } else if (viewType == VIEW_TYPE_TWO) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_item_two, parent, false);
             return new GameDataViewHolder(view);
@@ -100,6 +104,13 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
                 strings.add(dataBean.getCover());
                 titles.add(dataBean.getTitle());
             }
+//            viewHolder.rv_banner.setOnBannerListener(new OnBannerListener() {
+//                @Override
+//                public void OnBannerClick(int position) {
+//                    Toast.makeText(context, "the banner is clicked!", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+
             viewHolder.rv_banner.setImages(strings);
             viewHolder.rv_banner.setBannerTitles(titles);
             viewHolder.rv_banner.start();
@@ -111,6 +122,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof RecommendDataListViewHolder) {
             RecommendDataListViewHolder viewHolder = (RecommendDataListViewHolder) holder;
+            viewHolder.textView_top_title.setText(recommendData.get(position).getTitle());
             viewHolder.textView_first.setText(recommendData.get(position).getData().get(0).getTitle());
             viewHolder.textView_second.setText(recommendData.get(position).getData().get(1).getTitle());
             viewHolder.textView_third.setText(recommendData.get(position).getData().get(2).getTitle());
@@ -128,6 +140,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
                     .into(viewHolder.imageView_third);
         } else if (holder instanceof GameDataViewHolder) {
             GameDataViewHolder viewHolder = (GameDataViewHolder) holder;
+            viewHolder.textView_item_two_title.setText(recommendData.get(position).getTitle());
             viewHolder.textView_one.setText(recommendData.get(position).getData().get(0).getTitle());
             viewHolder.textView_two.setText(recommendData.get(position).getData().get(1).getTitle());
             viewHolder.textView_third.setText(recommendData.get(position).getData().get(2).getTitle());
@@ -146,6 +159,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
                     .into(viewHolder.imageView_fourth);
         } else if (holder instanceof ThirdViewHolder) {
             ThirdViewHolder viewHolder = (ThirdViewHolder) holder;
+            viewHolder.textView_third_title.setText(recommendData.get(position).getTitle());
             viewHolder.textView_rv_one.setText(recommendData.get(position).getData().get(0).getTitle());
             viewHolder.textView_rv_two.setText(recommendData.get(position).getData().get(1).getTitle());
             viewHolder.textView_rv_three.setText(recommendData.get(position).getData().get(2).getTitle());
@@ -222,11 +236,11 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
     }
 
     /**
-     * 第一个item的view holder
+     * 第一个item的view holder 1*3
      */
     static class RecommendDataListViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView_first, imageView_second, imageView_third;
-        TextView textView_first, textView_second, textView_third,
+        TextView textView_first, textView_second, textView_third, textView_top_title,
                 textView_author_first, textView_author_second, textView_author_third;
 
         public RecommendDataListViewHolder(@NonNull View itemView) {
@@ -240,16 +254,17 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
             textView_author_first = itemView.findViewById(R.id.textView_author_first);
             textView_author_second = itemView.findViewById(R.id.textView_author_second);
             textView_author_third = itemView.findViewById(R.id.textView_author_third);
+            textView_top_title = itemView.findViewById(R.id.textView_top_title);
         }
     }
 
     /**
-     * 第二个item的view holder
+     * 第二个item的view holder 2*3
      */
 
     static class GameDataViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView_one, imageView_two, imageView_third, imageView_fourth;
-        TextView textView_one, textView_two, textView_third, textView_fourth;
+        TextView textView_one, textView_two, textView_third, textView_fourth, textView_item_two_title;
 
         public GameDataViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -262,6 +277,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
             textView_two = itemView.findViewById(R.id.textView_title_two);
             textView_third = itemView.findViewById(R.id.textView_title_third);
             textView_fourth = itemView.findViewById(R.id.textView_title_fourth);
+            textView_item_two_title = itemView.findViewById(R.id.textView_item_two_title);
         }
     }
 
@@ -269,7 +285,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
      * banner的view holder
      */
     static class BannerViewHolder extends RecyclerView.ViewHolder {
-        Banner rv_banner;
+        MyBanner rv_banner;
 
         public BannerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -283,7 +299,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
     static class ThirdViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView_rv_one, imageView_rv_two, imageView_rv_three,
                 imageView_rv_four, imageView_rv_five, imageView_rv_six;
-        TextView textView_rv_one, textView_rv_two, textView_rv_three,
+        TextView textView_rv_one, textView_rv_two, textView_rv_three, textView_third_title,
                 textView_rv_four, textView_rv_five, textView_rv_six;
 
         public ThirdViewHolder(@NonNull View itemView) {
@@ -300,6 +316,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
             textView_rv_four = itemView.findViewById(R.id.rv_third_tv_four);
             textView_rv_five = itemView.findViewById(R.id.rv_third_tv_five);
             textView_rv_six = itemView.findViewById(R.id.rv_third_tv_six);
+            textView_third_title = itemView.findViewById(R.id.textView_item_third_title);
         }
     }
 }

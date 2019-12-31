@@ -52,4 +52,5 @@ public class RecommendFragment extends DaggerFragment {
         });
     }
 
+
 }
