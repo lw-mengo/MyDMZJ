@@ -10,8 +10,9 @@
         android:id="@+id/news_rv_cover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:contentDescription="@string/image_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,61 +24,49 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toEndOf="@+id/news_rv_cover"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/news_rv_cover" />
 
     <TextView
         android:id="@+id/news_rc_tv_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
+        android:layout_marginStart="2dp"
         android:text="TextView"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintBottom_toBottomOf="@+id/news_rv_user_cover"
+        app:layout_constraintStart_toEndOf="@+id/news_rv_user_cover" />
 
     <ImageView
         android:id="@+id/news_rv_user_cover"
-        android:layout_width="24dp"
-        android:layout_height="26dp"
+        android:layout_width="19dp"
+        android:layout_height="17dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:contentDescription="@string/image_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/news_rv_cover"
         app:layout_constraintStart_toEndOf="@+id/news_rv_cover"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.87"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="18dp"
-        android:layout_height="19dp"
-        android:layout_marginEnd="124dp"
+        android:layout_width="15dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="60dp"
         android:contentDescription="@string/image_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888"
+        app:layout_constraintBottom_toBottomOf="@+id/news_rc_tv_user"
+        app:layout_constraintStart_toEndOf="@+id/news_rc_tv_user"
         app:srcCompat="@drawable/ic_good" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="18dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="64dp"
+        android:layout_width="16dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="8dp"
         android:contentDescription="@string/image_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.887"
+        app:layout_constraintBottom_toBottomOf="@+id/news_rv_tv_good_number"
+        app:layout_constraintStart_toEndOf="@+id/news_rv_tv_good_number"
         app:srcCompat="@drawable/ic_comment" />
 
     <TextView
@@ -87,10 +76,8 @@
         android:layout_marginStart="2dp"
         android:text="TextView"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893"
         tools:text="154" />
 
     <TextView
@@ -100,10 +87,8 @@
         android:layout_marginStart="2dp"
         android:text="TextView"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893"
         tools:text="325" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

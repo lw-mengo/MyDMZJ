@@ -9,7 +9,7 @@
         android:id="@+id/imageView_one"
         android:layout_width="160dp"
         android:layout_height="86dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/image_content"
         android:scaleType="fitXY"
@@ -82,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
+        android:layout_marginBottom="2dp"
         android:ellipsize="end"
         android:maxEms="7"
         android:maxLines="1"
@@ -89,6 +90,7 @@
         android:singleLine="true"
         android:text="TextView"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView_thrid"
         app:layout_constraintTop_toBottomOf="@+id/imageView_thrid" />
 
@@ -103,6 +105,7 @@
         android:singleLine="true"
         android:text="TextView"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_title_third"
         app:layout_constraintStart_toStartOf="@+id/imageView_fourth"
         app:layout_constraintTop_toTopOf="@+id/textView_title_third" />
 
@@ -110,7 +113,7 @@
         android:id="@+id/textView_item_two_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"

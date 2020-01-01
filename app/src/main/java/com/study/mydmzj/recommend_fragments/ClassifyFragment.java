@@ -49,8 +49,6 @@ public class ClassifyFragment extends DaggerFragment {
         //mViewModel = ViewModelProviders.of(this).get(ClassifyViewModel.class);
         rv_classify.setLayoutManager(new GridLayoutManager(requireContext(), 3));
         ClassifyRecyclerViewAdapter adapter = new ClassifyRecyclerViewAdapter(requireContext());
-        rv_classify.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
-
         mViewModel.getListMutableLiveData().observe(this, classifyData -> {
             adapter.setList(classifyData);
             rv_classify.setAdapter(adapter);
