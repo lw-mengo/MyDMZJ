@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".second_ui_fragment.ComicDetailFragment">
+
+    <ImageButton
+        android:id="@+id/imageButton_back"
+        android:layout_width="41dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="3dp"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/ic_arrow_back_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton_back"
+        app:layout_constraintTop_toTopOf="@+id/imageButton_back" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/custom_jb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_jb">
+
+            <ImageView
+                android:id="@+id/imageView_cover"
+                android:layout_width="142dp"
+                android:layout_height="162dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="2dp"
+                android:contentDescription="@string/image_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textView_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/imageView_cover"
+                app:layout_constraintTop_toTopOf="@+id/imageView_cover" />
+
+            <TextView
+                android:id="@+id/textView_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/textView_author"
+                app:layout_constraintTop_toBottomOf="@+id/textView_author" />
+
+            <TextView
+                android:id="@+id/textView_click_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/textView_type"
+                app:layout_constraintTop_toBottomOf="@+id/textView_type" />
+
+            <TextView
+                android:id="@+id/textView_subscription_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/textView_click_num"
+                app:layout_constraintTop_toBottomOf="@+id/textView_click_num" />
+
+            <TextView
+                android:id="@+id/textView_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/textView_subscription_num"
+                app:layout_constraintTop_toBottomOf="@+id/textView_subscription_num" />
+
+            <Button
+                android:id="@+id/button_subscript"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:text="@string/subscript"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_cover"
+                app:layout_constraintStart_toStartOf="@+id/textView_status"
+                tools:text="订阅漫画" />
+
+            <Button
+                android:id="@+id/button_read"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/start_read"
+                app:layout_constraintBottom_toBottomOf="@+id/button_subscript"
+                app:layout_constraintStart_toEndOf="@+id/button_subscript"
+                app:layout_constraintTop_toTopOf="@+id/button_subscript"
+                tools:text="开始阅读" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_comic_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/introduce" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/announcement" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/author_announcement" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/comic_detail_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_comic_detail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

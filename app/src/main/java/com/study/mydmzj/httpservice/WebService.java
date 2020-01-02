@@ -1,6 +1,7 @@
 package com.study.mydmzj.httpservice;
 
 import com.study.mydmzj.beans.ClassifyData;
+import com.study.mydmzj.beans.ComicDetailData;
 import com.study.mydmzj.beans.LatestData;
 import com.study.mydmzj.beans.NewsBannerData;
 import com.study.mydmzj.beans.NewsData;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface WebService {
 
@@ -55,5 +57,11 @@ public interface WebService {
 
     @GET(value = "novel/recommend.json?timestamp=1576929340&channel=Android&_debug=0&version=2.7.023")
     Call<List<NovelData>> getNovelData();
+
+    /**
+     * 二级目录，国产漫画的详情页面
+     */
+    @GET(value = "comic/comic_{obj_id}.json?timestamp=1577857740&channel=Android&_debug=0&version=2.7.023")
+    Call<ComicDetailData> getComicDetailData(@Path("obj_id") int obj_id);
 
 }

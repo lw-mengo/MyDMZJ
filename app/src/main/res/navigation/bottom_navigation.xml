@@ -9,7 +9,18 @@
         android:id="@+id/comicFragment"
         android:name="com.study.mydmzj.ui_fargments.ComicFragment"
         android:label="漫画"
-        tools:layout="@layout/comic_fragment" />
+        tools:layout="@layout/comic_fragment" >
+        <action
+            android:id="@+id/action_comicFragment_to_webFragment"
+            app:destination="@id/webFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_comicFragment_to_comicDetailFragment"
+            app:destination="@id/comicDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/novelFragment"
         android:name="com.study.mydmzj.ui_fargments.NovelFragment"
@@ -25,4 +36,22 @@
         android:name="com.study.mydmzj.ui_fargments.UserFragment"
         android:label="登录"
         tools:layout="@layout/user_fragment" />
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="com.study.mydmzj.second_ui_fragment.WebFragment"
+        android:label="fragment_web"
+        tools:layout="@layout/fragment_web" >
+        <action
+            android:id="@+id/action_webFragment_to_comicFragment"
+            app:destination="@id/comicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicDetailFragment"
+        android:name="com.study.mydmzj.second_ui_fragment.ComicDetailFragment"
+        android:label="comic_detail_fragment"
+        tools:layout="@layout/comic_detail_fragment" >
+        <action
+            android:id="@+id/action_comicDetailFragment_to_comicFragment"
+            app:destination="@id/comicFragment" />
+    </fragment>
 </navigation>

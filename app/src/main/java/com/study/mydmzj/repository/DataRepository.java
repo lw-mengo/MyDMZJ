@@ -1,6 +1,7 @@
 package com.study.mydmzj.repository;
 
 import com.study.mydmzj.beans.ClassifyData;
+import com.study.mydmzj.beans.ComicDetailData;
 import com.study.mydmzj.beans.LatestData;
 import com.study.mydmzj.beans.NewsBannerData;
 import com.study.mydmzj.beans.NewsData;
@@ -147,6 +148,24 @@ public class DataRepository {
             @Override
             public void onFailure(Call<List<NovelData>> call, Throwable t) {
                 dataCallback.failed(t.toString());
+            }
+        });
+    }
+
+    /**
+     * 漫画详情页数据加载
+     */
+
+    public void loadComicDetailData(DataCallback<ComicDetailData> dataDataCallback, int obj_id) {
+        mwebService.getComicDetailData(obj_id).enqueue(new Callback<ComicDetailData>() {
+            @Override
+            public void onResponse(Call<ComicDetailData> call, Response<ComicDetailData> response) {
+                dataDataCallback.success(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ComicDetailData> call, Throwable t) {
+                dataDataCallback.failed(t.toString());
             }
         });
     }

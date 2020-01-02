@@ -62,6 +62,7 @@ public class ComicFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        requireActivity().findViewById(R.id.index_bottom_navigation).setVisibility(View.VISIBLE);
         mViewModel = ViewModelProviders.of(this).get(ComicViewModel.class);
         // TODO: Use the ViewModel
 

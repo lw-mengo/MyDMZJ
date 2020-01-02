@@ -1,6 +1,7 @@
 package com.study.mydmzj.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -97,8 +100,8 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
                             Glide.with(context).load(buildGlideUrl((String) path)).into(imageView);
                         }
                     });
-            List<String> strings = new ArrayList<>();
-            List<String> titles = new ArrayList<>();
+            List<String> strings = new ArrayList<>(5);
+            List<String> titles = new ArrayList<>(5);
             for (RecommendData.DataBean dataBean : recommendData.get(0).getData()
             ) {
                 strings.add(dataBean.getCover());
@@ -113,6 +116,25 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
 
             viewHolder.rv_banner.setImages(strings);
             viewHolder.rv_banner.setBannerTitles(titles);
+            viewHolder.rv_banner.setOnBannerListener(position -> {
+                switch (position) {
+                    case 0:
+                    case 1:
+                    case 3:
+                    case 4:
+                        NavController navController = Navigation.findNavController(viewHolder.rv_banner);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("obj_url", recommendData.get(0).getData().get(position).getUrl());
+                        navController.navigate(R.id.action_comicFragment_to_webFragment, bundle);
+                        break;
+                    case 2:
+                        NavController navController_two = Navigation.findNavController(viewHolder.rv_banner);
+                        Bundle bundle_two = new Bundle();
+                        bundle_two.putInt("obj_id", recommendData.get(0).getData().get(position).getObj_id());
+                        navController_two.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle_two);
+                        break;
+                }
+            });
             viewHolder.rv_banner.start();
             return new BannerViewHolder(view);
         }

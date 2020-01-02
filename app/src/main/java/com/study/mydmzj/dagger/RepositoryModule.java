@@ -7,6 +7,10 @@ import com.study.mydmzj.recommend_fragments.RecommendViewModel;
 import com.study.mydmzj.recommend_fragments.TopicFragment;
 import com.study.mydmzj.recommend_fragments.UpdateFragment;
 import com.study.mydmzj.recommend_fragments.UpdateViewModel;
+import com.study.mydmzj.second_ui_fragment.ComicDetailFragment;
+import com.study.mydmzj.second_ui_fragment.WorkFragmentOne;
+import com.study.mydmzj.second_ui_fragment.WorkFragmentSecond;
+import com.study.mydmzj.second_ui_fragment.WorkFragmentThird;
 import com.study.mydmzj.ui_fargments.NewsFragment;
 import com.study.mydmzj.ui_fargments.NovelFragment;
 
@@ -44,5 +48,17 @@ abstract class RepositoryModule {
 
     @ContributesAndroidInjector
     abstract NovelFragment contributeNovelFragment();
+
+    @ContributesAndroidInjector
+    abstract ComicDetailFragment contributeComicDetailFragment();
+
+    @ContributesAndroidInjector
+    abstract WorkFragmentOne workFragmentOne();
+
+    @ContributesAndroidInjector
+    abstract WorkFragmentSecond workFragmentSecond();
+
+    @ContributesAndroidInjector
+    abstract WorkFragmentThird workFragmentThird();
 
 }
