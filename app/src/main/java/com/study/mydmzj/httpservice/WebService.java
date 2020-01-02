@@ -18,7 +18,7 @@ import retrofit2.http.Path;
 public interface WebService {
 
     /**
-     * @return获取推荐首页的数据
+     * 获取推荐首页的数据
      */
     @GET(value = "recommend_new_game.json")
     Call<List<RecommendData>> getRecommendData();
@@ -59,7 +59,7 @@ public interface WebService {
     Call<List<NovelData>> getNovelData();
 
     /**
-     * 二级目录，国产漫画的详情页面
+     * 二级目录，漫画的详情页面
      */
     @GET(value = "comic/comic_{obj_id}.json?timestamp=1577857740&channel=Android&_debug=0&version=2.7.023")
     Call<ComicDetailData> getComicDetailData(@Path("obj_id") int obj_id);

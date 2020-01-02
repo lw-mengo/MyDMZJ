@@ -21,6 +21,8 @@ public class ComicDetailViewModel extends ViewModel implements DataCallback<Comi
     }
 
     private MutableLiveData<ComicDetailData> liveData;
+    private MutableLiveData<String> description, author_notice, comic_notice;
+
 
 //    private String description, author_notice, comic_notice;
 //
@@ -44,9 +46,28 @@ public class ComicDetailViewModel extends ViewModel implements DataCallback<Comi
         return liveData;
     }
 
+    public MutableLiveData<String> getDescription() {
+        if (description == null) {
+            description = new MutableLiveData<>();
+
+        }
+        return description;
+    }
+
+    public MutableLiveData<String> getAuthor_notice() {
+        return author_notice;
+    }
+
+    public MutableLiveData<String> getComic_notice() {
+        return comic_notice;
+    }
+
     @Override
     public void success(ComicDetailData data) {
         this.liveData.setValue(data);
+//        this.description.setValue(data.getDescription());
+//        comic_notice.setValue(data.getComic_notice());
+//        author_notice.setValue(data.getAuthor_notice());
 //        this.comic_notice = data.getComic_notice();
 //        this.author_notice = data.getAuthor_notice();
 //        this.description = data.getDescription();
@@ -56,5 +77,7 @@ public class ComicDetailViewModel extends ViewModel implements DataCallback<Comi
     public void failed(String result) {
         Log.d("error", "failed: " + result);
     }
-    // TODO: Implement the ViewModel
+
+    // TODO: Implement the
+
 }

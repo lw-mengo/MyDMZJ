@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.study.mydmzj.R;
 
@@ -29,18 +30,22 @@ public class WorkFragmentOne extends DaggerFragment {
         // Required empty public constructor
     }
 
+    private TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_work_fragment_one, container, false);
+        textView = view.findViewById(R.id.textView_txt);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        model.getDescription().observe(requireActivity(), s -> textView.setText(s)
+        );
 
     }
 }

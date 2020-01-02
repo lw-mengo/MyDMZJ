@@ -112,26 +112,22 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
 //                public void OnBannerClick(int position) {
 //                    Toast.makeText(context, "the banner is clicked!", Toast.LENGTH_SHORT).show();
 //                }
-//            });
+//            }
 
             viewHolder.rv_banner.setImages(strings);
             viewHolder.rv_banner.setBannerTitles(titles);
+            //banner的点击事件，由于类型不一，需要判断，准确送入下一层 ，它是通过type字段来分类 1代表漫画（不分国漫 日漫）,10是游戏中心，7是新闻（web），5是专题
             viewHolder.rv_banner.setOnBannerListener(position -> {
-                switch (position) {
-                    case 0:
-                    case 1:
-                    case 3:
-                    case 4:
-                        NavController navController = Navigation.findNavController(viewHolder.rv_banner);
-                        Bundle bundle = new Bundle();
+                NavController navController = Navigation.findNavController(viewHolder.rv_banner);
+                Bundle bundle = new Bundle();//放这里，不要一个case new一个，避免内存浪费
+                switch (recommendData.get(0).getData().get(position).getType()) {
+                    case 7:
                         bundle.putString("obj_url", recommendData.get(0).getData().get(position).getUrl());
                         navController.navigate(R.id.action_comicFragment_to_webFragment, bundle);
                         break;
-                    case 2:
-                        NavController navController_two = Navigation.findNavController(viewHolder.rv_banner);
-                        Bundle bundle_two = new Bundle();
-                        bundle_two.putInt("obj_id", recommendData.get(0).getData().get(position).getObj_id());
-                        navController_two.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle_two);
+                    case 1:
+                        bundle.putInt("obj_id", recommendData.get(0).getData().get(position).getObj_id());
+                        navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
                         break;
                 }
             });

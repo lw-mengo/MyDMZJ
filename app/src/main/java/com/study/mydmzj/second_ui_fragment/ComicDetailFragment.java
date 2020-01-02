@@ -33,7 +33,7 @@ public class ComicDetailFragment extends DaggerFragment {
     private ImageView imageView_cover;
     private TextView textView_author, textView_type, textView_click_num, textView_subscription_num,
             textView_status, textView_title;
-//            textView, textView2, textView3;
+    //            textView, textView2, textView3;
     private ImageButton imageButton_back;
 
     public static ComicDetailFragment newInstance() {
@@ -90,8 +90,8 @@ public class ComicDetailFragment extends DaggerFragment {
             textView_author.setText(comicDetailData.getAuthors().get(0).getTag_name());
             textView_type.setText(comicDetailData.getTypes().get(0).getTag_name());
             textView_status.setText(comicDetailData.getStatus().get(0).getTag_name());
-            textView_click_num.setText(String.valueOf(comicDetailData.getHit_num()));
-            textView_subscription_num.setText(String.valueOf(comicDetailData.getSubscribe_num()));
+            textView_click_num.setText(new StringBuilder().append("人气 ").append(comicDetailData.getHit_num()).toString());
+            textView_subscription_num.setText(new StringBuilder().append("订阅 ").append(comicDetailData.getSubscribe_num()).toString());
             Glide.with(this).load(RefererUtil.buildeGlideUrl(comicDetailData.getCover())).into(imageView_cover);
         });
 
