@@ -163,8 +163,24 @@
         android:id="@+id/comic_detail_viewpager"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout_comic_detail" />
+
+    <TextView
+        android:id="@+id/textView_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_keyboard_arrow_down_black"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="TextView"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        tools:text="动画制作×JK，青春冒险剧！ 嗜设定如命的浅草绿、梦想是动画师的人气读者模特水崎燕、见钱眼开的金森沙耶香。 向着迷宫、向着战场、向着宇宙，张开想象力的翅膀，电击三人娘将创作出最强的世界（映像）！惊异的天才、出现！？" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

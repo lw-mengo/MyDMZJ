@@ -28,27 +28,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu" />
 
-    <fragment
-        android:id="@+id/frameLayout_work_one"
-        android:name="com.study.mydmzj.second_ui_fragment.WorkFragmentOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/fragment2"
-        app:layout_constraintStart_toStartOf="parent"></fragment>
-
-    <fragment
-        android:id="@+id/frameLayout_work_second"
-        android:name="com.study.mydmzj.second_ui_fragment.WorkFragmentSecond"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/fragment2"
-        app:layout_constraintStart_toStartOf="parent"></fragment>
-
-    <fragment
-        android:id="@+id/frameLayout_work_third"
-        android:name="com.study.mydmzj.second_ui_fragment.WorkFragmentThird"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/fragment2"
-        app:layout_constraintStart_toStartOf="parent"></fragment>
 </androidx.constraintlayout.widget.ConstraintLayout>

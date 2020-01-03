@@ -78,16 +78,75 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
         if (viewType == VIEW_TYPE_ONE) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_item_one, parent, false);
             RecommendDataListViewHolder viewHolder = new RecommendDataListViewHolder(view);
-//            viewHolder.imageView_first.setOnClickListener(v -> {
-//                Toast.makeText(context, "the image is clicked!", Toast.LENGTH_SHORT).show();
-//            });
+            NavController navController = Navigation.findNavController(parent);
+            Bundle bundle = new Bundle(1);
+
+            viewHolder.imageView_first.setOnClickListener(v -> {
+                if ((Integer) viewHolder.itemView.getTag(R.id.TAG_SORT) == 3) {
+                    bundle.putInt("obj_id", (Integer) viewHolder.itemView.getTag(R.id.TAG_ONE));
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    return;
+                }
+            });
+            viewHolder.imageView_second.setOnClickListener(v -> {
+                if ((Integer) viewHolder.itemView.getTag(R.id.TAG_SORT) == 3) {
+                    bundle.putInt("obj_id", (Integer) viewHolder.itemView.getTag(R.id.TAG_SECOND));
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    return;
+                }
+
+            });
+            viewHolder.imageView_third.setOnClickListener(v -> {
+                if ((Integer) viewHolder.itemView.getTag(R.id.TAG_SORT) == 3) {
+                    bundle.putInt("obj_id", (Integer) viewHolder.itemView.getTag(R.id.TAG_THIRD));
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    return;
+                }
+            });
+
             return viewHolder;
         } else if (viewType == VIEW_TYPE_TWO) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_item_two, parent, false);
             return new GameDataViewHolder(view);
         } else if (viewType == VIEW_TYPE_THREE) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_item_third, parent, false);
-            return new ThirdViewHolder(view);
+            ThirdViewHolder viewHolder = new ThirdViewHolder(view);
+            NavController navController = Navigation.findNavController(parent);
+            Bundle bundle = new Bundle(1);
+            viewHolder.imageView_rv_one.setOnClickListener(view1 -> {
+                int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+                bundle.putInt("obj_id", recommendData.get(position).getData().get(0).getObj_id());
+                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+            });
+            viewHolder.imageView_rv_two.setOnClickListener(view1 -> {
+                int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+                bundle.putInt("obj_id", recommendData.get(position).getData().get(1).getObj_id());
+                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+            });
+            viewHolder.imageView_rv_three.setOnClickListener(view1 -> {
+                int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+                bundle.putInt("obj_id", recommendData.get(position).getData().get(2).getObj_id());
+                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+            });
+            viewHolder.imageView_rv_four.setOnClickListener(view1 -> {
+                int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+                bundle.putInt("obj_id", recommendData.get(position).getData().get(3).getObj_id());
+                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+            });
+            viewHolder.imageView_rv_five.setOnClickListener(view1 -> {
+                int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+                bundle.putInt("obj_id", recommendData.get(position).getData().get(4).getObj_id());
+                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+            });
+            viewHolder.imageView_rv_six.setOnClickListener(view1 -> {
+                int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+                bundle.putInt("obj_id", recommendData.get(position).getData().get(5).getObj_id());
+                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+            });
+            return viewHolder;
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_banner, parent, false);
             BannerViewHolder viewHolder = new BannerViewHolder(view);
@@ -140,6 +199,10 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof RecommendDataListViewHolder) {
             RecommendDataListViewHolder viewHolder = (RecommendDataListViewHolder) holder;
+            viewHolder.itemView.setTag(R.id.TAG_SORT, recommendData.get(position).getSort());
+            viewHolder.itemView.setTag(R.id.TAG_ONE, recommendData.get(position).getData().get(0).getObj_id());//tag的key的值必须在资源文件里指定，不然报错！
+            viewHolder.itemView.setTag(R.id.TAG_SECOND, recommendData.get(position).getData().get(1).getObj_id());
+            viewHolder.itemView.setTag(R.id.TAG_THIRD, recommendData.get(position).getData().get(2).getObj_id());
             viewHolder.textView_top_title.setText(recommendData.get(position).getTitle());
             viewHolder.textView_first.setText(recommendData.get(position).getData().get(0).getTitle());
             viewHolder.textView_second.setText(recommendData.get(position).getData().get(1).getTitle());
@@ -177,6 +240,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
                     .into(viewHolder.imageView_fourth);
         } else if (holder instanceof ThirdViewHolder) {
             ThirdViewHolder viewHolder = (ThirdViewHolder) holder;
+            viewHolder.itemView.setTag(R.id.TAG_POSITION, position);
             viewHolder.textView_third_title.setText(recommendData.get(position).getTitle());
             viewHolder.textView_rv_one.setText(recommendData.get(position).getData().get(0).getTitle());
             viewHolder.textView_rv_two.setText(recommendData.get(position).getData().get(1).getTitle());
@@ -233,7 +297,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
     }
 
     /**
-     * 用来返回recycleview的item的视图类型
+     * 用来返回recycle view的item的视图类型
      *
      * @param position item的下标
      * @return 返回试图的类型值，从0开始
@@ -252,6 +316,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
             return super.getItemViewType(position);
         }
     }
+
 
     /**
      * 第一个item的view holder 1*3
@@ -300,7 +365,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
     }
 
     /**
-     * banner的view holder
+     * banner的view holder,这个banner时复写了那个的，需要屏蔽掉父控件的滑动拦截
      */
     static class BannerViewHolder extends RecyclerView.ViewHolder {
         MyBanner rv_banner;
