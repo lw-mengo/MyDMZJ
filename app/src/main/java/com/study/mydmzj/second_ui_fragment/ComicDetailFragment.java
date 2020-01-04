@@ -90,7 +90,7 @@ public class ComicDetailFragment extends DaggerFragment {
             textView_click_num.setText(new StringBuilder().append("人气 ").append(comicDetailData.getHit_num()).toString());
             textView_subscription_num.setText(new StringBuilder().append("订阅 ").append(comicDetailData.getSubscribe_num()).toString());
             Glide.with(this).load(RefererUtil.buildeGlideUrl(comicDetailData.getCover())).into(imageView_cover);
-            if (comicDetailData.getIslong() == 1) {
+            if (comicDetailData.getAuthor_notice() != null) {
                 list.add(comicDetailData.getDescription());
                 list.add(comicDetailData.getComic_notice());
                 list.add(comicDetailData.getAuthor_notice());
@@ -134,7 +134,7 @@ public class ComicDetailFragment extends DaggerFragment {
                 isExtend = true;
             }
         });
-
+        textView_title.setSelected(true);//实现跑马灯这句话必须加上。
         requireActivity().findViewById(R.id.index_bottom_navigation).setVisibility(View.GONE);
     }
 
