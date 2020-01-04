@@ -40,6 +40,5 @@ public class ComicDetailViewModel extends ViewModel implements DataCallback<Comi
         Log.d("error", "failed: " + result);
     }
 
-    // TODO: Implement the
 
 }

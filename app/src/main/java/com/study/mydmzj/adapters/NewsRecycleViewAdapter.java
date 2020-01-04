@@ -72,4 +72,7 @@ public class NewsRecycleViewAdapter extends RecyclerView.Adapter<NewsRecycleView
 
         }
     }
+
+    //TODO 加一个item的点击事件
+
 }

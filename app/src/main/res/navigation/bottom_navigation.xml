@@ -30,7 +30,13 @@
         android:id="@+id/newsFragment"
         android:name="com.study.mydmzj.ui_fargments.NewsFragment"
         android:label="新闻"
-        tools:layout="@layout/news_fragment" />
+        tools:layout="@layout/news_fragment" >
+        <action
+            android:id="@+id/action_newsFragment_to_webFragment"
+            app:destination="@id/webFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.study.mydmzj.ui_fargments.UserFragment"

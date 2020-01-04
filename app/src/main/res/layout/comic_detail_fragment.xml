@@ -13,7 +13,7 @@
         android:layout_height="22dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/transparent"
-        android:src="@drawable/ic_arrow_back_black"
+        app:srcCompat="@drawable/ic_arrow_back_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,6 +132,61 @@
                 app:layout_constraintStart_toEndOf="@+id/button_subscript"
                 app:layout_constraintTop_toTopOf="@+id/button_subscript"
                 tools:text="开始阅读" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/image_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_author"
+                app:layout_constraintEnd_toStartOf="@+id/textView_author"
+                app:layout_constraintStart_toEndOf="@+id/imageView_cover"
+                app:layout_constraintTop_toTopOf="@+id/textView_author"
+                app:srcCompat="@drawable/ic_comic_author" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/image_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_type"
+                app:layout_constraintEnd_toStartOf="@+id/textView_type"
+                app:layout_constraintStart_toEndOf="@+id/imageView_cover"
+                app:layout_constraintTop_toTopOf="@+id/textView_type"
+                app:srcCompat="@drawable/ic_comic_type" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/image_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_click_num"
+                app:layout_constraintEnd_toStartOf="@+id/textView_click_num"
+                app:layout_constraintStart_toEndOf="@+id/imageView_cover"
+                app:layout_constraintTop_toTopOf="@+id/textView_click_num"
+                app:srcCompat="@drawable/ic_hot" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/image_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_subscription_num"
+                app:layout_constraintEnd_toStartOf="@+id/textView_subscription_num"
+                app:layout_constraintStart_toEndOf="@+id/imageView_cover"
+                app:layout_constraintTop_toTopOf="@+id/textView_subscription_num"
+                app:srcCompat="@drawable/ic_comic_subcript" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:contentDescription="@string/image_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_status"
+                app:layout_constraintEnd_toStartOf="@+id/textView_status"
+                app:layout_constraintStart_toEndOf="@+id/imageView_cover"
+                app:layout_constraintTop_toTopOf="@+id/textView_status"
+                app:srcCompat="@drawable/ic_comic_static" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
