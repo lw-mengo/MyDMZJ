@@ -8,6 +8,10 @@
 
 `Referer:http:v3api.dmzj.com/`
 
+
+
+### 经测试，所有api接口都已经升级到https，可以直接获取！
+
 ### 文章推荐列表--用于banner
 
 ##### api地址
