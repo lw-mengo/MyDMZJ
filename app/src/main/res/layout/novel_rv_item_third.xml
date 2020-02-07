@@ -19,10 +19,10 @@
         android:id="@+id/imageView_cover_first"
         android:layout_width="100dp"
         android:layout_height="132dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:contentDescription="@string/image_content"
         android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_title"
         tools:srcCompat="@tools:sample/avatars" />
@@ -31,24 +31,26 @@
         android:id="@+id/imageView_cover_second"
         android:layout_width="100dp"
         android:layout_height="132dp"
-        android:layout_marginStart="16dp"
         android:contentDescription="@string/image_content"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_cover_first"
-        app:layout_constraintStart_toEndOf="@+id/imageView_cover_first"
+        app:layout_constraintEnd_toStartOf="@+id/guideline17"
+        app:layout_constraintStart_toStartOf="@+id/guideline16"
         app:layout_constraintTop_toTopOf="@+id/imageView_cover_first"
+        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/imageView_cover_third"
         android:layout_width="100dp"
         android:layout_height="132dp"
-        android:layout_marginStart="16dp"
         android:contentDescription="@string/image_content"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_cover_second"
-        app:layout_constraintStart_toEndOf="@+id/imageView_cover_second"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
         app:layout_constraintTop_toTopOf="@+id/imageView_cover_second"
+        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -149,10 +151,9 @@
         android:id="@+id/imageView_cover_fifth"
         android:layout_width="100dp"
         android:layout_height="132dp"
-        android:layout_marginStart="16dp"
         android:contentDescription="@string/image_content"
         android:scaleType="fitXY"
-        app:layout_constraintStart_toEndOf="@+id/imageView_cover_fourth"
+        app:layout_constraintStart_toStartOf="@+id/textView_novel_author_second"
         app:layout_constraintTop_toTopOf="@+id/imageView_cover_fourth"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -160,10 +161,9 @@
         android:id="@+id/imageView_cover_sixth"
         android:layout_width="100dp"
         android:layout_height="132dp"
-        android:layout_marginStart="16dp"
         android:contentDescription="@string/image_content"
         android:scaleType="fitXY"
-        app:layout_constraintStart_toEndOf="@+id/imageView_cover_fifth"
+        app:layout_constraintStart_toStartOf="@+id/textView_novel_author_third"
         app:layout_constraintTop_toTopOf="@+id/imageView_cover_fifth"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -256,4 +256,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView_novel_title_sixth"
         app:layout_constraintTop_toBottomOf="@+id/textView_novel_title_sixth" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66" />
 </androidx.constraintlayout.widget.ConstraintLayout>

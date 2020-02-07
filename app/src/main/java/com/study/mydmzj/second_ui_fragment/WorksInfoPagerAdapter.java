@@ -1,5 +1,7 @@
 package com.study.mydmzj.second_ui_fragment;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +19,11 @@ import java.util.List;
 public class WorksInfoPagerAdapter extends RecyclerView.Adapter {
 
     private List<String> strings = new ArrayList<>(3);
+    private Context context;
 
-    public void setStrings(List<String> strings) {
+    public void setStrings(List<String> strings, Context context) {
         this.strings = strings;
+        this.context = context;
     }
 
     private boolean isExtend = false;
@@ -33,9 +37,15 @@ public class WorksInfoPagerAdapter extends RecyclerView.Adapter {
         viewHolder.textView.setOnClickListener(v -> {
             if (isExtend) {
                 viewHolder.textView.setMaxLines(2);
+                Drawable drawable = context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_down_black, null);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                viewHolder.textView.setCompoundDrawables(null, null, drawable, null);
                 isExtend = false;
             } else {
                 viewHolder.textView.setMaxLines(10);
+                Drawable drawable = context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_down_black, null);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                viewHolder.textView.setCompoundDrawables(null, null, drawable, null);
                 isExtend = true;
             }
         });

@@ -1,4 +1,3 @@
-[TOC]
 
 # 动漫之家的api接口文档
 
@@ -7,7 +6,6 @@
 ~~Referer:'http://images.dmzj.com/'~~
 
 `Referer:http:v3api.dmzj.com/`
-
 
 
 ### 经测试，所有api接口都已经升级到https，可以直接获取！
@@ -21,6 +19,7 @@
 ##### 返回数据类型：
 
 data里是个数组，太多了所以显示部分
+
 ```json
 {
   "code": 0,
@@ -36,20 +35,22 @@ data里是个数组，太多了所以显示部分
   ]
 }
 ```
+
 ### 推荐新闻接口
 
 
-
 ##### api地址
+
 `http://v3api.dmzj.com/v3/article/list/0/2/0.json?timestamp=1576929059&channel=Android&_debug=0&version=2.7.023`
 *链接的V2后面的参数依次是:
 0->推荐新闻，1->动画情报,2->漫画情报，3->轻小说情报……
-中间的是一个排序的参数，从1-3，默认用2就好
-最后一个是page，表示页数，从0开始
-*
+中间的是一个排序的参数，从1-3，默认用2就好 最后一个是page，表示页数，从0开始
+* 
 
 ##### 返回数据：
+
 返回的是一个数组
+
 ```json
 [
   {
@@ -96,6 +97,7 @@ data里是个数组，太多了所以显示部分
   }
 ]
 ```
+
 **上面json中page_url就是对应文章的详情页**
 
 ### 手机首页的推荐
@@ -290,11 +292,10 @@ data里是个数组，太多了所以显示部分
 ```
 
 
-
-| 字段        | 含义             |
-| ----------- | ---------------- |
-| category_id | 分类id           |
-| title       | 栏目标题         |
+| 字段        | 含义            |
+|:------------|:---------------|
+| category_id | 分类id          |
+| title       | 栏目标题        |
 | sort        | 栏目分类标志     |
 | data        | 数据区，是个数组 |
 
@@ -309,7 +310,7 @@ http://v3api.dmzj.com/UCenter/author/3734.json?timestamp=1578109469&channel=Andr
 ```
 
 | 字段 | 含义                |
-| ---- | ------------------- |
+|:-----|:-------------------|
 | 3734 | 上一层api中的obj_id |
 
 *返回的数据*
@@ -331,7 +332,7 @@ http://v3api.dmzj.com/UCenter/author/3734.json?timestamp=1578109469&channel=Andr
 `http://v3api.dmzj.com/subject/399.json?timestamp=1577849629&channel=Android&_debug=0&version=2.7.023`
 
 | 字段    | 含义                |
-| ------- | ------------------- |
+|:--------|:-------------------|
 | subject | 详情页              |
 | 399     | 上一级api给的obj_id |
 
@@ -341,13 +342,13 @@ http://v3api.dmzj.com/UCenter/author/3734.json?timestamp=1578109469&channel=Andr
 
 `http://v3api.dmzj.com/game_c/game/detail/113.json?timestamp=1577857313&uid=&channel=Android&_debug=0&version=2.7.023`
 
-| 字段 | 含义                            |
-| ---- | ------------------------------- |
+| 字段 | 含义                          |
+|:-----|:------------------------------|
 | 113  | 上一级api返回json中的obj_id字段 |
 
 ##### 点击漫画进入的
 
-*评论json*  
+*评论json*
 
 `http://v3comment.dmzj.com/v1/4/latest/51438?page_index=1&limit=10&timestamp=1577857740&channel=Android&_debug=0&version=2.7.023`
 
@@ -466,36 +467,33 @@ http://v3api.dmzj.com/comic/comic_{obj_id}.json?timestamp=1577857740&channel=And
 
 *部分参数解析*
 
-| 参数                     | 含义                                              |
-| ------------------------ | :------------------------------------------------ |
-| id                       | 漫画的id                                          |
+| 参数                     | 含义                                          |
+|:-------------------------|:---------------------------------------------|
+| id                       | 漫画的id                                      |
 | islong                   | ~~目测用来控制标签切换页的1是显示，2是隐藏~~ 未知 |
-| direction                | ~~用来控制标签切换，1是日漫，2是国漫~~ 未知       |
-| title                    | 漫画标题                                          |
-| is_dmzj                  | 未知标签                                          |
-| cover                    | 封面图片链接                                      |
-| description              | 漫画简介                                          |
-| last_updatetime          | 最后更新的时间戳                                  |
-| last_update_chapter_name | 最新的章节标题                                    |
-| copyright                | 著作权标志                                        |
-| first_letter             | 漫画标题的首字母                                  |
-| comic_py                 | 漫画标题的拼音                                    |
-| hidden                   | 未知                                              |
-| hot_num                  | 人气 日漫专用标签                                 |
-| hit_num                  | 点击 国漫专用标签                                 |
-| is_lock                  | 锁定标志，估计是一些被禁止的                      |
-| last_update_chapter_id   | 最新章节的id                                      |
-| types                    | 漫画类型                                          |
-| authors                  | 漫画作者                                          |
-| subscr——num              | 订阅                                              |
-| status                   | 完结还是连载状态                                  |
-| chapters                 | 漫画章节列表                                      |
-| author——notice           | 作者公告                                          |
-| comic_notice             | 漫画公告                                          |
-| comment                  | 评论列表                                          |
-
-
-
+| direction                | ~~用来控制标签切换，1是日漫，2是国漫~~ 未知      |
+| title                    | 漫画标题                                      |
+| is_dmzj                  | 未知标签                                      |
+| cover                    | 封面图片链接                                   |
+| description              | 漫画简介                                      |
+| last_updatetime          | 最后更新的时间戳                               |
+| last_update_chapter_name | 最新的章节标题                                 |
+| copyright                | 著作权标志                                    |
+| first_letter             | 漫画标题的首字母                               |
+| comic_py                 | 漫画标题的拼音                                 |
+| hidden                   | 未知                                          |
+| hot_num                  | 人气 日漫专用标签                              |
+| hit_num                  | 点击 国漫专用标签                              |
+| is_lock                  | 锁定标志，估计是一些被禁止的                    |
+| last_update_chapter_id   | 最新章节的id                                  |
+| types                    | 漫画类型                                      |
+| authors                  | 漫画作者                                      |
+| subscr——num              | 订阅                                          |
+| status                   | 完结还是连载状态                               |
+| chapters                 | 漫画章节列表                                   |
+| author——notice           | 作者公告                                      |
+| comic_notice             | 漫画公告                                      |
+| comment                  | 评论列表                                      |
 
 
 ### 小说获取
@@ -519,7 +517,6 @@ http://v3api.dmzj.com/comic/comic_{obj_id}.json?timestamp=1577857740&channel=And
 ##### 进入具体章节的api 返回的时txt文件，里面有HTML格式
 
 `http://v3api.dmzj.com/novel/download/2769_10507_101813.txt`
-
 
 
 ### 开发过程中的记录

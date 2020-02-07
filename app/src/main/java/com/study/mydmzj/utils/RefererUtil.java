@@ -13,7 +13,7 @@ public class RefererUtil {
             return null;
         } else {
             return new GlideUrl(url, new LazyHeaders.Builder()
-                    .addHeader("Referer", "http://v3api.dmzj.com/")
+                    .addHeader("Referer", "https://v3api.dmzj.com/")
                     .build());
         }
     }

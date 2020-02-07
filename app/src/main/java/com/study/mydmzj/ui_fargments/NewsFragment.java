@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.study.mydmzj.R;
 import com.study.mydmzj.adapters.NewsRecycleViewAdapter;
+import com.study.mydmzj.adapters.OnItemClickListener;
 import com.study.mydmzj.beans.NewsBannerData;
 import com.study.mydmzj.utils.RefererUtil;
 import com.youth.banner.Banner;
@@ -55,7 +58,6 @@ public class NewsFragment extends DaggerFragment {
 //        mViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
         NewsRecycleViewAdapter adapter = new NewsRecycleViewAdapter(requireContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
                 .setDelayTime(3000)
                 .setImageLoader(new ImageLoader() {
@@ -67,6 +69,13 @@ public class NewsFragment extends DaggerFragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         mViewModel.getListMutableLiveData().observe(this, newsData -> {
             adapter.setNewsDataList(newsData);
+            adapter.setOnItemClickListener((view, position) -> {
+                NavController navController = Navigation.findNavController(view);
+                Bundle bundle = new Bundle(1);
+                String page_url = newsData.get(position).getPage_url();
+                bundle.putString("obj_url", page_url);
+                navController.navigate(R.id.action_newsFragment_to_webFragment, bundle);
+            });
             recyclerView.setAdapter(adapter);
         });
         mViewModel.getMutableLiveData().observe(this, newsBannerData -> {
@@ -80,9 +89,8 @@ public class NewsFragment extends DaggerFragment {
             banner.setImages(urlList);
             banner.setBannerTitles(stringList);
             banner.start();
-
-
         });
+        requireActivity().findViewById(R.id.index_bottom_navigation).setVisibility(View.VISIBLE);
 
     }
 

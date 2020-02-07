@@ -55,7 +55,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
             return null;
         } else {
             return new GlideUrl(url, new LazyHeaders.Builder()
-                    .addHeader("Referer", "http://v3api.dmzj.com/")
+                    .addHeader("Referer", "https://v3api.dmzj.com/")
                     .build());
         }
     }
@@ -80,7 +80,6 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
             RecommendDataListViewHolder viewHolder = new RecommendDataListViewHolder(view);
             NavController navController = Navigation.findNavController(parent);
             Bundle bundle = new Bundle(1);
-
             viewHolder.imageView_first.setOnClickListener(v -> {
                 if ((Integer) viewHolder.itemView.getTag(R.id.TAG_SORT) == 3) {
                     bundle.putInt("obj_id", (Integer) viewHolder.itemView.getTag(R.id.TAG_ONE));

@@ -18,9 +18,10 @@ import com.study.mydmzj.utils.RefererUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsRecycleViewAdapter extends RecyclerView.Adapter<NewsRecycleViewAdapter.NewsViewHolder> {
+public class NewsRecycleViewAdapter extends RecyclerView.Adapter<NewsRecycleViewAdapter.NewsViewHolder> implements View.OnClickListener {
     private Context context;
     private List<NewsData> newsDataList = new ArrayList<>();
+    private OnItemClickListener onItemClickListener;
 
     public NewsRecycleViewAdapter(Context context) {
         this.context = context;
@@ -30,11 +31,16 @@ public class NewsRecycleViewAdapter extends RecyclerView.Adapter<NewsRecycleView
         this.newsDataList = newsDataList;
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     @NonNull
     @Override
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_rv_item, parent, false);
-        return new NewsViewHolder(view);
+        view.setOnClickListener(this);//设置监听器
+        return new NewsViewHolder(view,onItemClickListener);
     }
 
     @Override
@@ -57,11 +63,16 @@ public class NewsRecycleViewAdapter extends RecyclerView.Adapter<NewsRecycleView
         return newsDataList.size();
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
+
     static class NewsViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView_news_cover, imageView_news_user_cover;
         TextView textView_title, textView_tv_good, textView_tv_comment, textView_user;
 
-        public NewsViewHolder(@NonNull View itemView) {
+         NewsViewHolder(@NonNull View itemView, final OnItemClickListener onItemClickListener) {
             super(itemView);
             imageView_news_cover = itemView.findViewById(R.id.news_rv_cover);
             imageView_news_user_cover = itemView.findViewById(R.id.news_rv_user_cover);
@@ -69,10 +80,16 @@ public class NewsRecycleViewAdapter extends RecyclerView.Adapter<NewsRecycleView
             textView_tv_good = itemView.findViewById(R.id.news_rv_tv_good_number);
             textView_tv_comment = itemView.findViewById(R.id.news_rv_tv_comment_number);
             textView_user = itemView.findViewById(R.id.news_rc_tv_user);
+            itemView.setOnClickListener(view -> {
+                if (onItemClickListener != null) {
+                    int position = getAdapterPosition();
+                    //确保position有数值
+                    if (position != RecyclerView.NO_POSITION) {
+                        onItemClickListener.onItemClick(view, position);
+                    }
+                }
+            });
 
         }
     }
-
-    //TODO 加一个item的点击事件
-
 }

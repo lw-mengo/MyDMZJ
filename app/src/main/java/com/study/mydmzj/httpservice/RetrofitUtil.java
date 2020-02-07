@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitUtil {
 
     private static RetrofitUtil instance;
-    private static final String BASE_URL = "http://v3api.dmzj.com/";
+    private static final String BASE_URL = "https://v3api.dmzj.com/";
     private Retrofit retrofit;
 
     @Inject
