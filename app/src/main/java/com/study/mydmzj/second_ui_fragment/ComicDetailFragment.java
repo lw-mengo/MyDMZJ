@@ -13,16 +13,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.study.mydmzj.R;
+import com.study.mydmzj.adapters.EpisodeRecycleAdapter;
+import com.study.mydmzj.beans.ComicDetailData;
 import com.study.mydmzj.utils.RefererUtil;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -41,6 +47,8 @@ public class ComicDetailFragment extends DaggerFragment {
     private TextView textView_author, textView_type, textView_click_num, textView_subscription_num,
             textView_status, textView_title, textView_description;
     private ImageButton imageButton_back;
+    //    private TagView episode_tags, episode_tags_simple;
+    private RecyclerView episode_rv_one, episode_rv_two;
 
     private boolean isExtend = false;
 
@@ -64,6 +72,10 @@ public class ComicDetailFragment extends DaggerFragment {
         textView_status = view.findViewById(R.id.textView_status);
         textView_title = view.findViewById(R.id.textView_title);
         textView_description = view.findViewById(R.id.textView_description);
+//        episode_tags = view.findViewById(R.id.episode_tags);
+//        episode_tags_simple = view.findViewById(R.id.episode_tags_simple);
+        episode_rv_one = view.findViewById(R.id.episode_rv_one);
+        episode_rv_two = view.findViewById(R.id.episode_rv_two);
         return view;
     }
 
@@ -78,8 +90,10 @@ public class ComicDetailFragment extends DaggerFragment {
             navController.navigateUp();//返回上一级
         });
         WorksInfoPagerAdapter worksInfoPagerAdapter = new WorksInfoPagerAdapter();
-
         List<String> list = new ArrayList<>(3);//因为明确知道数组3个元素，所以直接指定。
+
+        episode_rv_one.setLayoutManager(new GridLayoutManager(requireContext(), 4));
+        episode_rv_two.setLayoutManager(new GridLayoutManager(requireContext(), 4));
 
 //在这个里面的那个切页展示数据，一开始想的复杂了，使用了tablayout+viewpager2+fragment，其实用tablayout+viewpager2就可以简单，少了一层通信。另外viewpager2目前版本不成熟，有一些不太理解的错误提示。
         mViewModel.getLiveData(obj_id).observe(this, comicDetailData -> {
@@ -90,6 +104,24 @@ public class ComicDetailFragment extends DaggerFragment {
             textView_click_num.setText(new StringBuilder().append("人气 ").append(comicDetailData.getHit_num()).toString());//人气数据
             textView_subscription_num.setText(new StringBuilder().append("订阅 ").append(comicDetailData.getSubscribe_num()).toString());/**订阅数据**/
             Glide.with(this).load(RefererUtil.buildeGlideUrl(comicDetailData.getCover())).into(imageView_cover);/**加载作品封面图**/
+//弃用下面的方案，在数据较多时，阻塞主线程的执行，考虑其他实现
+//            List<Tag> episode_list = new ArrayList<>();
+//            for (int i = 0; i < comicDetailData.getChapters().get(0).getData().size()&&i<12; i++) {
+//                episode_list.add(new Tag(comicDetailData.getChapters().get(0).getData().get(i).getChapter_title())); //使用这个，在数组很多的时候，太消耗性能了。
+//            }
+//            Collections.reverse(episode_list);反序
+//            episode_tags.addTags(episode_list);
+//            episode_tags_simple.addTags(episode_list);
+            /**处理剧集数据**/
+            List<ComicDetailData.ChaptersBean.DataBean> dataBeans = new ArrayList<>();
+            for (int i = 0; i < 12 && i < comicDetailData.getChapters().get(0).getData().size(); i++) {
+                dataBeans.add(comicDetailData.getChapters().get(0).getData().get(i));
+            }
+            //stream().sorted(Comparator.comparing(ComicDetailData.ChaptersBean.DataBean::setChapter_order)).collect(Collectors.toList());
+            EpisodeRecycleAdapter adapter = new EpisodeRecycleAdapter(dataBeans);
+            episode_rv_one.setAdapter(adapter);
+            episode_rv_two.setAdapter(adapter);
+
             if (comicDetailData.getAuthor_notice() != null) {/** 根据有没有作者公告标签来判断是否需要展示更多数据**/
                 list.add(comicDetailData.getDescription());
                 list.add(comicDetailData.getComic_notice());
@@ -111,11 +143,15 @@ public class ComicDetailFragment extends DaggerFragment {
                             break;
                     }
                 }).attach();
+//                episode_tags_simple.setVisibility(View.GONE);
+                episode_rv_one.setVisibility(View.GONE);
             } else {
                 viewPager2.setVisibility(View.GONE);
                 tabLayout.setVisibility(View.GONE);
                 textView_description.setVisibility(View.VISIBLE);
                 textView_description.setText(comicDetailData.getDescription());
+//                episode_tags.setVisibility(View.GONE);
+                episode_rv_two.setVisibility(View.GONE);
             }
         });
         //作品简介的展开与收缩

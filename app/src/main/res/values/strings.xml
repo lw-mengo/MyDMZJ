@@ -19,6 +19,6 @@
     <string name="introduce">作品介绍</string>
     <string name="announcement">作品公告</string>
     <string name="author_announcement">作者公告</string>
-    <string name="subscript" >订阅漫画</string>
+    <string name="subscript">订阅漫画</string>
     <string name="start_read">开始阅读</string>
 </resources>

@@ -115,36 +115,105 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter {
             ThirdViewHolder viewHolder = new ThirdViewHolder(view);
             NavController navController = Navigation.findNavController(parent);
             Bundle bundle = new Bundle(1);
+/**这里最后一个是 id 而不是 obj_id*，各个图片控件的点击事件*/
+//            viewHolder.itemView.setOnClickListener(v -> {
+//                if (recommendData.get(viewHolder.getAdapterPosition()).getData().get(0).getId() != 0) {
+//                    bundle.putInt("obj_id",recommendData.get(viewHolder.getAdapterPosition()).getData().get());
+//                }
+//            });
+
             viewHolder.imageView_rv_one.setOnClickListener(view1 -> {
                 int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
-                bundle.putInt("obj_id", recommendData.get(position).getData().get(0).getObj_id());
-                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                if (recommendData.get(position).getData().get(0).getId() != 0) {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(0).getId());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(0).getObj_id());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                }
             });
             viewHolder.imageView_rv_two.setOnClickListener(view1 -> {
                 int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
-                bundle.putInt("obj_id", recommendData.get(position).getData().get(1).getObj_id());
-                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                if (recommendData.get(position).getData().get(0).getId() != 0) {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(1).getId());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(1).getObj_id());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                }
             });
             viewHolder.imageView_rv_three.setOnClickListener(view1 -> {
                 int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
-                bundle.putInt("obj_id", recommendData.get(position).getData().get(2).getObj_id());
-                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                if (recommendData.get(position).getData().get(0).getId() != 0) {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(2).getId());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(2).getObj_id());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                }
             });
             viewHolder.imageView_rv_four.setOnClickListener(view1 -> {
                 int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
-                bundle.putInt("obj_id", recommendData.get(position).getData().get(3).getObj_id());
-                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                if (recommendData.get(position).getData().get(0).getId() != 0) {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(3).getId());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(3).getObj_id());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                }
             });
             viewHolder.imageView_rv_five.setOnClickListener(view1 -> {
                 int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
-                bundle.putInt("obj_id", recommendData.get(position).getData().get(4).getObj_id());
-                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                if (recommendData.get(position).getData().get(0).getId() != 0) {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(4).getId());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(4).getObj_id());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                }
             });
             viewHolder.imageView_rv_six.setOnClickListener(view1 -> {
                 int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
-                bundle.putInt("obj_id", recommendData.get(position).getData().get(5).getObj_id());
-                navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                if (recommendData.get(position).getData().get(0).getId() != 0) {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(5).getId());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                } else {
+                    bundle.putInt("obj_id", recommendData.get(position).getData().get(5).getObj_id());
+                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+                }
             });
+
+//                viewHolder.imageView_rv_one.setOnClickListener(view1 -> {
+//                    int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+//                    bundle.putInt("obj_id", recommendData.get(position).getData().get(0).getObj_id());
+//                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+//                });
+//                viewHolder.imageView_rv_two.setOnClickListener(view1 -> {
+//                    int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+//                    bundle.putInt("obj_id", recommendData.get(position).getData().get(1).getObj_id());
+//                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+//                });
+//                viewHolder.imageView_rv_three.setOnClickListener(view1 -> {
+//                    int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+//                    bundle.putInt("obj_id", recommendData.get(position).getData().get(2).getObj_id());
+//                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+//                });
+//                viewHolder.imageView_rv_four.setOnClickListener(view1 -> {
+//                    int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+//                    bundle.putInt("obj_id", recommendData.get(position).getData().get(3).getObj_id());
+//                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+//                });
+//                viewHolder.imageView_rv_five.setOnClickListener(view1 -> {
+//                    int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+//                    bundle.putInt("obj_id", recommendData.get(position).getData().get(4).getObj_id());
+//                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+//                });
+//                viewHolder.imageView_rv_six.setOnClickListener(view1 -> {
+//                    int position = (int) viewHolder.itemView.getTag(R.id.TAG_POSITION);
+//                    bundle.putInt("obj_id", recommendData.get(position).getData().get(5).getObj_id());
+//                    navController.navigate(R.id.action_comicFragment_to_comicDetailFragment, bundle);
+//                });
+
             return viewHolder;
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_rv_banner, parent, false);

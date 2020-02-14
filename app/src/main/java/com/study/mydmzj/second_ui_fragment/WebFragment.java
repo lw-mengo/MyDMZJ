@@ -14,15 +14,12 @@ import com.study.mydmzj.R;
 
 
 public class WebFragment extends Fragment {
-    private AgentWeb agentWeb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_web, container, false);
-
-
         return view;
     }
 
@@ -30,7 +27,7 @@ public class WebFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         String web_url = getArguments().getString("obj_url");
-        agentWeb = AgentWeb.with(this)
+        AgentWeb agentWeb = AgentWeb.with(this)
                 .setAgentWebParent((LinearLayout) getView(), new LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator()
                 .createAgentWeb()

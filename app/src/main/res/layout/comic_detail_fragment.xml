@@ -13,9 +13,10 @@
         android:layout_height="22dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/transparent"
-        app:srcCompat="@drawable/ic_arrow_back_black"
+        android:contentDescription="@string/image_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_black" />
 
     <TextView
         android:id="@+id/textView_title"
@@ -25,11 +26,11 @@
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton_back"
-        app:layout_constraintTop_toTopOf="@+id/imageButton_back" />
+        app:layout_constraintTop_toTopOf="@+id/imageButton_back"
+        tools:text="漫画作品的标题" />
 
     <View
         android:id="@+id/divider2"
@@ -73,50 +74,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="TextView"
                 app:layout_constraintStart_toEndOf="@+id/imageView_cover"
-                app:layout_constraintTop_toTopOf="@+id/imageView_cover" />
+                app:layout_constraintTop_toTopOf="@+id/imageView_cover"
+                tools:text="作者" />
 
             <TextView
                 android:id="@+id/textView_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/textView_author"
-                app:layout_constraintTop_toBottomOf="@+id/textView_author" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_author"
+                tools:text="类型" />
 
             <TextView
                 android:id="@+id/textView_click_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/textView_type"
-                app:layout_constraintTop_toBottomOf="@+id/textView_type" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_type"
+                tools:text="点击数量" />
 
             <TextView
                 android:id="@+id/textView_subscription_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/textView_click_num"
-                app:layout_constraintTop_toBottomOf="@+id/textView_click_num" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_click_num"
+                tools:text="订阅数" />
 
             <TextView
                 android:id="@+id/textView_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="TextView"
                 app:layout_constraintStart_toStartOf="@+id/textView_subscription_num"
-                app:layout_constraintTop_toBottomOf="@+id/textView_subscription_num" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_subscription_num"
+                tools:text="作品状态" />
 
             <Button
                 android:id="@+id/button_subscript"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="24dp"
                 android:text="@string/subscript"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView_cover"
                 app:layout_constraintStart_toStartOf="@+id/textView_status"
@@ -126,7 +128,7 @@
                 android:id="@+id/button_read"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/start_read"
                 app:layout_constraintBottom_toBottomOf="@+id/button_subscript"
                 app:layout_constraintStart_toEndOf="@+id/button_subscript"
@@ -218,7 +220,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/comic_detail_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -228,15 +230,40 @@
         android:id="@+id/textView_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:drawableEnd="@drawable/ic_keyboard_arrow_down_black"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="TextView"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         tools:text="动画制作×JK，青春冒险剧！ 嗜设定如命的浅草绿、梦想是动画师的人气读者模特水崎燕、见钱眼开的金森沙耶香。 向着迷宫、向着战场、向着宇宙，张开想象力的翅膀，电击三人娘将创作出最强的世界（映像）！惊异的天才、出现！？" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episode_rv_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episode_rv_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comic_detail_viewpager" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,9 @@ import com.study.mydmzj.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 漫画介绍标签tablayout的适配器
+ */
 public class WorksInfoPagerAdapter extends RecyclerView.Adapter {
 
     private List<String> strings = new ArrayList<>(3);
@@ -43,7 +46,7 @@ public class WorksInfoPagerAdapter extends RecyclerView.Adapter {
                 isExtend = false;
             } else {
                 viewHolder.textView.setMaxLines(10);
-                Drawable drawable = context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_down_black, null);
+                Drawable drawable = context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_up_black, null);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 viewHolder.textView.setCompoundDrawables(null, null, drawable, null);
                 isExtend = true;

@@ -67,6 +67,7 @@ public class RecommendData {
         private int obj_id;
         private String status;
         private String is_dot;
+        private int id;
 
         public String getCover() {
             return cover;
@@ -130,6 +131,10 @@ public class RecommendData {
 
         public void setIs_dot(String is_dot) {
             this.is_dot = is_dot;
+        }
+
+        public int getId() {
+            return id;
         }
     }
 }
